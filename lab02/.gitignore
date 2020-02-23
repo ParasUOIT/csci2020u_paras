@@ -2,4 +2,4 @@
 *.class
 
 // Ignore the .gradle directory
-.gradle/
+/.gradle/*
