@@ -1,5 +1,5 @@
 // Ignore class files
 *.class
 
-// Ignore the build.gradle directory
-build.gradle/
+// Ignore the .gradle directory
+.gradle/
