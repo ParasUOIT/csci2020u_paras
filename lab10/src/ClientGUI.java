@@ -26,6 +26,7 @@ public class ClientGUI extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+        // Create the register ui first then switch later.
         VBox regvBox = new VBox();
 
         HBox userRegister = new HBox(10);
@@ -37,7 +38,7 @@ public class ClientGUI extends Application {
         // Register the name and then switch scenes.
         btRegister.setOnAction(e -> {
             client.setUsername(userField.getText());
-            primaryStage.setScene(setClientGUI());
+            primaryStage.setScene(setMainGUI());
             primaryStage.setTitle("Instance for " + client.getUsername());
             primaryStage.show();
         });
@@ -50,7 +51,8 @@ public class ClientGUI extends Application {
         primaryStage.show();
     }
 
-    private Scene setClientGUI() {
+    // create
+    private Scene setMainGUI() {
         VBox vBox = new VBox();
 
         VBox chatPane = createChatPane();
@@ -90,6 +92,7 @@ public class ClientGUI extends Application {
         userText.setPrefSize(500,50);
         userText.setMinSize(100,50);
 
+        // Allow user to send text if they press send or if they press the enter key
         userText.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
                 client.sendText(userText.getText());

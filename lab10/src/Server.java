@@ -37,7 +37,9 @@ public class Server {
         }
     }
 
+    // synchronized method to make sure only one client is allowed to send text at a time
     public static synchronized void sendMessage(String text) throws IOException {
+        // iterate over items in the list and write to the socket
         for (Socket client : clientList) {
             if (!client.isClosed()) {
                 PrintWriter output = new PrintWriter(client.getOutputStream());
@@ -46,8 +48,6 @@ public class Server {
             }
 
         }
-        System.out.println("Sent message to all clients.");
-        System.out.println();
         return;
     }
 
@@ -55,7 +55,7 @@ public class Server {
         new Server().startListening();
     }
 
-    // Handler class
+    // Handler class to listen for input
     class ClientHandler implements Runnable {
         Socket clientSocket;
 
@@ -72,7 +72,6 @@ public class Server {
                     String message = clientInput.readLine();
 
                     if (!message.equals("")) {
-                        System.out.println("msg contents: " + message);
                         Server.sendMessage(message);
                     }
                 }

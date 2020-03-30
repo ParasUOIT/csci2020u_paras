@@ -13,7 +13,7 @@ public class Client implements Runnable {
     private TextArea chatMessages;
     private static String username;
 
-
+    // Initialize the connection
     public Client() throws IOException {
         try {
             socket = new Socket(InetAddress.getLocalHost(), PORT);
